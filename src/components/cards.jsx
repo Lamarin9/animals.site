@@ -1,5 +1,6 @@
 import React from 'react';
 import img2 from '../images/Pic/croco.jpg';
+import "../components/qqq.css";
 
 const Cards = () => {
     return(
