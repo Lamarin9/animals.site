@@ -1,31 +1,34 @@
 import React from 'react';
+import "../components/qqq.css";
 import img from '../images/Pic/Logo.png';
+import { Link } from "react-router-dom";
 
 const Header = () => {
     return(
       <header>
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
     <div className="container-fluid">
-      <a href="index.html"><img src={img} className="Logo" alt="..." /></a>
+      <Link to={'/'}> <img src={img} className="Logo" alt="..."/>
+      </Link>
       <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
       <div className="collapse navbar-collapse" id="navbarNavDropdown">
         <ul className="navbar-nav">
           <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href="index.html">Главная</a>
+            <Link to={'/'} className="nav-link active" aria-current="page">Главная</Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="qwe6.html">Добавить в поиск</a>
+            <Link to={'/dobavjiv'} className="nav-link">Добавить в поиск</Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="qwe5.html">Поиск животного</a>
+            <Link to={'/vsejiv'} className="nav-link">Поиск животного</Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="qwe2.html">Регистрация</a>
+            <Link to={'/registracia'} className="nav-link">Регистрация</Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="qwe3.html">Вход</a>
+            <Link to={'/Voiti'} className="nav-link">Вход</Link>
           </li>
         </ul>
       </div>
