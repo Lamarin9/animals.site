@@ -24,7 +24,7 @@ const Voiti = () => {
       </label>
     </div>
     <br/>
-  <button onclick="location.href='qwe4.html'" className="btn btn-primary" >Войти в аккаунт</button>
+  <button type="submit" className="btn btn-primary" >Войти в аккаунт</button>
 </form>
 </div>
       <Footer/>

@@ -6,6 +6,11 @@ import React from 'react';
 import img5 from '../images/Pic/Tambi.jpg';
 
 const Lichkab = () => {
+    let person = {FIO: "Тамби Масаев Мухамедович", city: "Санкт-Петербург", Mail: "TambiTop@mail.ru", num: "+7 (800) 555-35-35",
+     day: "152",
+     street: "Ленина", home: "15",
+     korpuc: "1", flat: "455"}
+     let cardlich = {name: "Джейк", status: "На модерации", raion: "Выборгский", date: "14.08.23", kind: "Броненосец"}
     return (
         <div>
             <Header />
@@ -19,8 +24,8 @@ const Lichkab = () => {
                             <div className="card mb-4">
                                 <div className="card-body text-center">
                                     <img src={img5} alt="avatar" className="rounded-circle img-fluid" style={{ "width": "150px" }} />
-                                    <h5 className="my-3">Тамби Масаев</h5>
-                                    <p className="text-muted mb-4">Город: Санкт-Петербург</p>
+                                    <h5 className="my-3">{person.FIO}</h5>
+                                    <p className="text-muted mb-4">Город: {person.city}</p>
                                 </div>
                             </div>
                         </div>
@@ -32,7 +37,7 @@ const Lichkab = () => {
                                             <p className="mb-0">ФИО</p>
                                         </div>
                                         <div className="col-sm-9">
-                                            <p className="text-muted mb-0">Тамби Масаев Мухамедович</p>
+                                            <p className="text-muted mb-0">{person.FIO}</p>
                                         </div>
                                     </div>
                                     <hr />
@@ -41,7 +46,7 @@ const Lichkab = () => {
                                             <p className="mb-0">Почта</p>
                                         </div>
                                         <div className="col-sm-9">
-                                            <p className="text-muted mb-0">TambiTop@mail.ru</p>
+                                            <p className="text-muted mb-0">{person.mail}</p>
                                         </div>
                                     </div>
                                     <hr />
@@ -50,7 +55,7 @@ const Lichkab = () => {
                                             <p className="mb-0">Номер телефона</p>
                                         </div>
                                         <div className="col-sm-9">
-                                            <p className="text-muted mb-0">+7 (800) 555-35-35</p>
+                                            <p className="text-muted mb-0">{person.num}</p>
                                         </div>
                                     </div>
                                     <hr />
@@ -59,7 +64,7 @@ const Lichkab = () => {
                                             <p className="mb-0">Адрес</p>
                                         </div>
                                         <div className="col-sm-9">
-                                            <p className="text-muted mb-0">Ул. Ленина, д.15, к.1, кв. 455</p>
+                                            <p className="text-muted mb-0">Ул. {person.street}, д. {person.home}, к. {person.korpuc}, кв. {person.flat}</p>
                                         </div>
                                     </div>
                                     <hr />
@@ -68,16 +73,16 @@ const Lichkab = () => {
                                             <p className="mb-0">Кол-во дней на сайте:</p>
                                         </div>
                                         <div className="col-sm-9">
-                                            <p className="text-muted mb-0">152</p>
+                                            <p className="text-muted mb-0">{person.day}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <button type="submit" className="btn btn-primary ff izmena1" >Выйти из аккаунта</button>
-                            <button type="button" className="btn btn-primary izmena" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button type="button" className="btn btn-primary izmena" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                                 Изменить данные
                             </button>
-                            <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div className="modal fade" id="exampleModal2" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div className="modal-dialog">
                                     <div className="modal-content">
                                         <div className="modal-header">
@@ -123,7 +128,7 @@ const Lichkab = () => {
 
             <div className="line">Личные Объявления</div>
 
-            <Cardslich />
+            <Cardslich data = {cardlich}/>
 
             <div className="line3">Всего объявление: 1; Найденных хозяев: 0;</div>
 

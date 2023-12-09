@@ -6,6 +6,14 @@ import "../components/qqq.css";
 import React from 'react';
 
 const Main = () => {
+let card = {name: "Гена", raion: "Приморский", date: "22.12.22", kind: "Крокодил"}
+let card1 = {name: "Пушкин", raion: "Выборгский", date: "11.10.23", kind: "Рыба"}
+let card2 = {name: "Клава", raion: "Муринский", date: "09.10.23", kind: "Жаба"}
+let card3 = {name: "Дамбо", raion: "Адмиралтейский", date: "08.01.23", kind: "Слон"}
+let card4 = {name: "Базилио", raion: "Колпинский", date: "15.02.23", kind: "Кот"}
+let slider = {name: "Голубь", date: "13.04.23", dateprop: "11.01.22",}
+let slider2 = {name: "Детёныш носорога и капибары", date: "30.11.23", dateprop: "24.11.23",}
+let slider3 = {name: "Корова смотритель", date: "13.12.22", dateprop: "22.05.23 "}
   return (
     <div>
       <Header />
@@ -19,9 +27,9 @@ const Main = () => {
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
           </div>
           <div className="carousel-inner">
-            <Slider />
-            <Slider />
-            <Slider />
+            <Slider data = {slider}/>
+            <Slider data = {slider2}/>
+            <Slider data = {slider3}/>
           </div>
           <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
             <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -38,11 +46,11 @@ const Main = () => {
 
       <div className="line">Свежие объявления!</div>
       <div className="row row-cols-1 row-cols-md-3 g-4 w-75 m-auto">
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
+        <Cards data = {card} />
+        <Cards data = {card1} />
+        <Cards data = {card2} />
+        <Cards data = {card3} />
+        <Cards data = {card4} />
       </div>
       <div className="line1">Обратная связь если вы видели животное!</div>
 
