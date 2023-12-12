@@ -1,5 +1,6 @@
 import React from 'react';
 import img2 from '../images/Pic/croco.jpg';
+import { Link } from "react-router-dom";
 import "../components/qqq.css";
 
 
@@ -13,7 +14,8 @@ const Cards = (props) => {
         <h5 className="card-title">{props.data.name}</h5>
         <p className="card-text">Район: {props.data.raion}. Найден:  {props.data.date}. Вид: {props.data.kind}.</p>
       </div>
-        <div><button className="btn btn-primary ff" >Подробнее</button></div>
+      <Link to={'/cardjiv'}>
+        <div><button className="btn btn-primary ff" >Подробнее</button></div></Link>
       </div>
     </div>
   </div>

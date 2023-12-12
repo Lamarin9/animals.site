@@ -60,7 +60,7 @@ const Dobavjiv = () => {
           Зарегистрироваться
         </summary>
         <div className = "d-flex flex-column justify-content-center align-items-center w-50" style={{"margin": "auto"}}>
-        <div className="mb-4 w-100">
+        <div className="mb-4 w-100" style={{"marginTop":"10px"}}>
           <input type="text" className="form-control border border-primary" placeholder="Email" required/>
         </div>
           <div className="mb-4 w-100">
