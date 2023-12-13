@@ -43,7 +43,7 @@ let  indicators=slide.data.pets.map((pet, index)=>{
 
 
   return (
-    <div>
+    <div className="ddds">
        <Loader display={show}/>
         <div id="carouselExampleIndicators" className="carousel slide carousel-dark w-50 m-auto" data-bs-ride="carousel" style={{minWidth: '250'}}>
   <div className="carousel-indicators">
