@@ -92,6 +92,7 @@
     border:1px solid black;
     padding: 10px;
     border-radius: 5px;
+
 }
 
 .ss{
@@ -161,4 +162,19 @@
 
 .pur:hover{
     background-color: rgb(141, 95, 9) important;
+}
+
+.none{
+display: none;
+}
+
+.asda{
+    display: flex;
+    margin: auto;
+    justify-content: center;
+}
+
+.wwww{
+    height: 300px;
+    width: auto;
 }

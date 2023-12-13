@@ -1,42 +1,89 @@
 import Header from "../components/header";
 import Footer from "../components/footer";
 import "../components/qqq.css";
-import React from 'react';
+import React, { useRef, useState } from 'react';
 
 const Voiti = () => {
+  let [user, setUser] = useState();
+  let [token, setToken] = useState();
+
+  let blocks = useRef();
+
+  function sign(e) {
+      e.preventDefault();
+
+      const forms = document.getElementById('forma')
+
+      if (!forms.checkValidity()) {
+          e.stopPropagation()
+          forms.classList.add('was-validated')
+          return
+      }
+
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      var raw = JSON.stringify(user);
+
+      var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+      };
+
+      fetch("https://pets.сделай.site/api/login", requestOptions)
+          .then(response => response.json())
+          .then(result => {
+              if ('data' in result) {
+                  localStorage.token = result.data.token
+                  setToken(result.data.token)
+                  let message = 'Регистрация прошла успешно!!!';
+                  blocks.current.innerText = message;
+                  blocks.current.style.background = "#34C924"
+                  blocks.current.style.color = "black";
+                  blocks.current.style.border = "1px solid rgb(19, 136, 8)"
+                  blocks.current.style.display = 'flex';
+              }
+              else
+              {
+                  let message = 'Вы ввели неправильный логин или пароль!!!';
+        blocks.current.innerText = message;
+        blocks.current.style.background = '#C76864';
+        blocks.current.style.color = "black";
+        blocks.current.style.border = "1px solid #801818"
+        blocks.current.style.display = 'flex';
+              }})
+          .catch(error => console.log('error', error));
+  }
   return (
-    <div>
-      <Header/>
-
+      <div>
+          <Header />
       <h1 className="lineReg">Вход в аккаунт</h1>
-<div style={{"minHeight":"58vh"}}>
-<form className="contei1" >
-<h2 className="text-center text-white bg-primary m-2">Аутентификация</h2>
-        <form className="w-50 g-3 m-auto border p-3 needs-validation" style={{minWidth: "300px"}} onSubmit={auth} noValidate id='form'>
+      <div style={{"minHeight":"58vh"}}>
+              <form className="contei1" noValidate onSubmit={sign} id='forma'>
+                      <label htmlFor="validationCustom01" className="form-label">Email</label>
+                      <input type="email" className="form-control" id="validationCustom01" required onChange={(e) => setUser({ ...user, email: e.target.value })} />
+                      <div className="invalid-feedback feed">
+                          Введите правильный Mail
+                      </div>
+                      <label htmlFor="validationCustom02" className="form-label">Пароль</label>
+                      <input type="password" pattern='^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])[A-Za-z\d]{7,}$' className="form-control" id="validationCustom02" required onChange={(e) => setUser({ ...user, password: e.target.value })} />
+                      <div className="invalid-feedback feed">
+                          Латинские буквы обязательно одна заглавная, строчная и цифра, минимум 7 символов
+                      </div>
+                  <div>
+                    <br/>
+                      <button className="btn btn-primary" type="submit">Войти</button>
+                  </div>
+              </form>
+              <div className="alert alert-primary w-50 asda mt-3" style={{"display":"none"}} role="alert" ref={blocks}></div>
+              </div>
+          <Footer className="fooot"/>
 
-        <div className="col-md-4">
-    <label htmlFor="validationCustom01" className="form-label">e-mail</label>
-    <input type="email" className="form-control" id="validationCustom01" required onChange={(e)=>setUser({...user, email:e.target.value})} />
-    <div className="invalid-feedback">
-        Пожалуйста, введите адрес электронной почты
       </div>
-  </div>
-  <div className="col-md-4">
-    <label htmlFor="validationCustom02" className="form-label">Пароль</label>
-    <input type="password" className="form-control" id="validationCustom02" required onChange={(e)=>setUser({...user, password:e.target.value})} />
-    <div className="invalid-feedback">
-        Пожалуйста, введите пароль
-      </div>
-  </div>
-              <input type="submit" className="btn btn-primary m-3" value="Войти"/>            
-        </form>
-        <p className='text-danger text-center' id='error' style={{display:'none'}}>Неправилный адрес электронной почты и e-mail</p>
-      <p className='text-success text-center' id='success' style={{display:'none'}}>Вы успешно зарегистрировались, ваш токен: {token}</p>
-</form>
-</div>
-      <Footer/>
-    </div>
-  )
-}
+  );
+};
 
 export default Voiti;
+
