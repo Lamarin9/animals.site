@@ -11,8 +11,10 @@ const Cards = (props) => {
       <div className="card-body ft">
           <div>
         <h5 className="card-title">{props.data.name}</h5>
-        <p className="card-text">id: {props.data.id}. Телефон: {props.data.phone}. Имя: {props.data.name}. Вид: {props.data.kind}.</p> 
-        <p className="card-text">Описание:{props.data.description}. Чип:{props.data.mark}. Район:{props.data.district}. Дата:{props.data.date}</p>
+        <p className="card-text">id: {props.data.id}.</p> 
+        <p className="card-text">Телефон: {props.data.phone}.</p> 
+        <p className="card-text">Имя: {props.data.name} | Вид: {props.data.kind}.</p> 
+        <p className="card-text">Описание:{props.data.description} | Чип:{props.data.mark} | Район:{props.data.district} | Дата:{props.data.date}.</p>
       </div>
       <Link to={'/cardjiv'}>
         <div><button className="btn btn-primary ff" >Подробнее</button></div></Link>

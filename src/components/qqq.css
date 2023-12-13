@@ -187,3 +187,12 @@ display: none;
 .iij{
     color: orange;
 }
+
+.contei6{
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-top: 5%;
+    border:1px solid black;
+    padding: 10px;
+    border-radius: 5px;
+}
