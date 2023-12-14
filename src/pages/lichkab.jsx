@@ -9,9 +9,11 @@ import { useNavigate } from 'react-router-dom';
 
 const Lichkab = () => {
 
+
     let cardlich = { name: "Джейк", status: "На модерации", raion: "Выборгский", date: "14.08.23", kind: "Броненосец" }
 
     let [user, setUser] = useState({});
+    let [cards, setCards] = useState([]);
     let [day, setDay] = useState(0);
     let history = useNavigate();
 
@@ -47,6 +49,29 @@ const Lichkab = () => {
 
     }
     useEffect(load, []);
+
+    const loadCards = () => {
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer " + localStorage.token);
+
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        fetch("https://pets.сделай.site/api/users/orders", requestOptions)
+            .then(response => response.json())
+            .then(result => {console.log(result);
+                if (result.data.orders.length > 0)
+                {
+                    
+                    setCards(result.data.orders)
+                }
+            })
+            .catch(error => console.log('error', error));
+    }
+    useEffect(loadCards, []);
 
     let block = useRef();
     let blocks = useRef();
@@ -207,61 +232,61 @@ const Lichkab = () => {
 
 
                             <div className="d-flex justify-content-end">
-                                <button type="button" onClick={exit} className="btn btn-primary izmena6" >Выйти из аккаунта</button>
+                                <button type="button" onClick={exit} className="btn btn-danger izmena6" >Выйти из аккаунта</button>
                             </div>
 
 
                             <div className="modal anim_mess" id="exampleModal2" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Редактировать номер телефона</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div className="modal-body">
-                            <form className="needs-validation flex justify-content-center" noValidate id='phone' onSubmit={sendPhone}>
-                                <div>
-                                    <input type="text" pattern='^[\d\+]{12}$' className="form-control" required onChange={(e) => setUser({ ...user, phone: e.target.value })} />
-                                    <div className="invalid-feedback">
-                                        Введите номер телефона, используйте + и цифры
+                                <div className="modal-dialog modal-dialog-centered">
+                                    <div className="modal-content">
+                                        <div className="modal-header">
+                                            <h5 className="modal-title" id="exampleModalLabel">Изменение номера телефона</h5>
+                                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div className="modal-body">
+                                            <form className="needs-validation flex justify-content-center" noValidate id='phone' onSubmit={sendPhone}>
+                                                <div>
+                                                    <input type="text" pattern='^[\d\+]{12}$' className="form-control" required onChange={(e) => setUser({ ...user, phone: e.target.value })} />
+                                                    <div className="invalid-feedback">
+                                                        Введите номер телефона, используйте + и цифры
+                                                    </div>
+                                                </div>
+                                                <div className="modal-footer">
+                                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                                                    <button className="btn btn-primary" type="submit">Сохранить изменение</button>
+                                                </div>
+                                            </form>
+                                            <div className="alert alert-primary none" role="alert" ref={blocks}></div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                                    <button className="btn btn-primary" type="submit">Сохранить изменение</button>
-                                </div>
-                            </form>
-                            <div className="alert alert-primary none" role="alert" ref={blocks}></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            </div>
 
-            <div className="modal" id="exampleModal3" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Редактировать email</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div className="modal-body">
-                            <form className="needs-validation flex justify-content-center" noValidate id='email' onSubmit={sendEmail}>
-                                <div>
-                                    <input type="email" className="form-control" required onChange={(e) => setUser({ ...user, email: e.target.value })} />
-                                    <div className="invalid-feedback">
-                                        Укажите корректный email
+                            <div className="modal" id="exampleModal3" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div className="modal-dialog modal-dialog-centered">
+                                    <div className="modal-content">
+                                        <div className="modal-header">
+                                            <h5 className="modal-title" id="exampleModalLabel">Изменение email</h5>
+                                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div className="modal-body">
+                                            <form className="needs-validation flex justify-content-center" noValidate id='email' onSubmit={sendEmail}>
+                                                <div>
+                                                    <input type="email" className="form-control" required onChange={(e) => setUser({ ...user, email: e.target.value })} />
+                                                    <div className="invalid-feedback">
+                                                        Укажите корректный email
+                                                    </div>
+                                                </div>
+                                                <div className="modal-footer">
+                                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                                                    <button className="btn btn-primary" type="submit">Сохранить изменение</button>
+                                                </div>
+                                            </form>
+                                            <div className="alert alert-primary none" role="alert" ref={block}></div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                                    <button className="btn btn-primary" type="submit">Сохранить изменение</button>
-                                </div>
-                            </form>
-                            <div className="alert alert-primary none" role="alert" ref={block}></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            </div>
 
 
 
@@ -273,7 +298,9 @@ const Lichkab = () => {
 
             <div className="line">Личные Объявления</div>
 
-            <Cardslich data={cardlich} />
+            <div className="row row-cols-1 row-cols-md-3 g-4 w-75 m-auto">
+            {cards.map((item, index) => <Cardslich data={item} key={index} />)}
+            </div>
 
             <div className="line3">Всего объявление: 1; Найденных хозяев: 0;</div>
 
