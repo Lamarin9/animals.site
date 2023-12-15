@@ -1,55 +1,86 @@
 import Header from "../components/header";
 import Footer from "../components/footer";
 import "../components/qqq.css";
-import React from 'react';
+import React,{useRef} from 'react';
 
 const Dobavjiv = () => {
+
+  let blocks = useRef();
+
+  function dobav(e) {
+    e.preventDefault();
+
+  var formdata = new FormData(document.getElementById("dobav"));
+
+var requestOptions = {
+  method: 'POST',
+  body: formdata,
+  redirect: 'follow'
+};
+
+fetch("https://pets.сделай.site/api/pets", requestOptions)
+.then(response => response.status)
+.then(result => {
+  console.log(result);
+    if (result==200) {
+        let message = 'Вы успешно выложили объявление!!!';
+        blocks.current.innerText = message;
+        blocks.current.style.background = "#34C924"
+        blocks.current.style.color = "black";
+        blocks.current.style.border = "1px solid rgb(19, 136, 8)"
+        blocks.current.style.display = 'flex';
+    }})
+
+
+  .catch(error => console.log('error', error));
+  }
+
     return (
         <div>
             <Header />
 
-            <form className="contei">
+            <form className="contei" id="dobav" noValidate onSubmit={dobav}>
     <label htmlFor="inputA">Ваше имя</label>
-    <input type="text" className="form-control" id="inputA" required/>
+    <input type="text" className="form-control" id="inputA" required name="name"/>
     <br/>
     <label htmlFor="inputK">Введите номер телефона</label>
-    <input type="text" className="form-control" id="inputK" required/>
+    <input type="text" className="form-control" id="inputK" required name="phone"/>
     <br/>
     <label htmlFor="inputEmail1">Введите вашу почту</label>
-    <input type="email" className="form-control" id="inputEmail1" placeholder="Почта" required/>
+    <input type="email" className="form-control" id="inputEmail1" placeholder="Почта" required name="email"/>
     <br/>
         <div className="form-group">
           <label htmlFor="exampleFormControlFile1">Выберите файл</label>
-          <input type="file" className="form-control-file" id="exampleFormControlFile1" required/>
+          <input type="file" className="form-control-file" id="exampleFormControlFile1" required name="photos1"/>
         </div>
         <br/>
         <div className="form-group">
           <label htmlFor="exampleFormControlFile1">Выберите файл</label>
-          <input type="file" className="form-control-file" id="exampleFormControlFile2"/>
+          <input type="file" className="form-control-file" id="exampleFormControlFile2" name="photos2"/>
         </div>
         <br/>
         <div className="form-group">
           <label htmlFor="exampleFormControlFile1">Выберите файл</label>
-          <input type="file" className="form-control-file" id="exampleFormControlFile3"/>
+          <input type="file" className="form-control-file" id="exampleFormControlFile3" name="photos3"/>
         </div>
     <br/>
     <label htmlFor="inputLast">Клеймо</label>
-    <input type="text" className="form-control" id="inputKlich"/>
+    <input type="text" className="form-control" id="inputKlich" name="mark"/>
     <br/>
     <label htmlFor="inputLast">Вид животного</label>
-    <input type="text" className="form-control" id="inputVid"/>
+    <input type="text" className="form-control" id="inputVid" name="kind"/>
     <br/>
     <label htmlFor="inputLast">Район</label>
-    <input type="text" className="form-control" id="inputLast"/>
+    <input type="text" className="form-control" id="inputLast" name="district"/>
     <br/>
     <label htmlFor="inputData">Дата нахождения животного</label>
-    <input type="date" className="form-control" id="inputData"/>
+    <input type="date" className="form-control" id="inputData" name="date"/>
     <br/>
     <label htmlFor="exampleFormControlTextarea1">Описание</label>
-    <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
     <br/>
       <div className="form-check">
-        <input className="form-check-input" type="checkbox" id="gridCheck"/>
+        <input className="form-check-input" type="checkbox" id="gridCheck" name="confirm"/>
         <label className="form-check-label" htmlFor="gridCheck">
           Подтвердите что вы не робот
         </label>
@@ -60,14 +91,12 @@ const Dobavjiv = () => {
           Зарегистрироваться
         </summary>
         <div className = "d-flex flex-column justify-content-center align-items-center w-50" style={{"margin": "auto"}}>
-        <div className="mb-4 w-100" style={{"marginTop":"10px"}}>
-          <input type="text" className="form-control border border-primary" placeholder="Email" required/>
-        </div>
           <div className="mb-4 w-100">
-          <input type="password" className="form-control border border-primary" placeholder="Пароль" required/>
+            <br/>
+          <input type="password" className="form-control border border-primary" placeholder="Пароль" required name="password"/>
           </div>
           <div className="mb-4 w-100">
-          <input type="password" className="form-control border border-primary" placeholder="Введите пароль повторно" required/>
+          <input type="password" className="form-control border border-primary" placeholder="Введите пароль повторно" required name="password_confirmation"/>
           </div>
         </div>
       </details>
@@ -76,6 +105,7 @@ const Dobavjiv = () => {
     <button type="submit" className="btn btn-primary">Выложить объявление</button>
 </div>
   </form>
+  <div className="alert alert-primary w-50 asda mt-3 " style={{"display":"none"}} role="alert" ref={blocks}></div>
 
             <Footer />
         </div>
