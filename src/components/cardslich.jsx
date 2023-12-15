@@ -1,8 +1,8 @@
 import React from 'react';
-import img6 from '../images/Pic/Bronenos.png';
 import "../components/qqq.css";
 
 const Cardslich = (props) => {
+  
 
   function redact(e) {
     e.preventDefault();
