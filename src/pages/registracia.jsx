@@ -62,7 +62,7 @@ const Registracia = () => {
           </div>
           <br />
           <label htmlFor="inputNum">Номер телефона</label>
-          <input type="" className="form-control" id="inputNum" pattern='^[\d\+]{12}$' required onChange={(e) => setUser({ ...user, phone: e.target.value })} />
+          <input type="text" className="form-control" id="inputNum" pattern='^[\d\+]{12}$' required onChange={(e) => setUser({ ...user, phone: e.target.value })} />
           <div className="invalid-feedback">
             Введите номер телефона использвуя + и цифры без пробела
           </div>
