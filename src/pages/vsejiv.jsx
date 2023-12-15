@@ -2,61 +2,94 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Cards from "../components/cards";
 import "../components/qqq.css";
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import Cardslich from "../components/cardslich";
 
 const Vsejiv = () => {
-let card = {name: "Гена", raion: "Приморский", date: "22.12.22", kind: "Крокодил"}
-let card1 = {name: "Пушкин", raion: "Выборгский", date: "11.10.23", kind: "Рыба"}    
-let card2 = {name: "Клава", raion: "Муринский", date: "09.10.23", kind: "Жаба"}
-let card3 = {name: "Дамбо", raion: "Адмиралтейский", date: "08.01.23", kind: "Слон"}
-let card4 = {name: "Базилио", raion: "Колпинский", date: "15.02.23", kind: "Кот"}
-let card5 = {name: "Константин", raion: "Колпинский", date: "14.03.23", kind: "Капибара"}
-let card6 = {name: "Ракета", raion: "Петроградский", date: "24.04.22", kind: "Енот"}
-let card7 = {name: "Десперо", raion: "Шушарский", date: "21.02.23", kind: "Енот"}
-let card8 = {name: "Егор", raion: "Центральный", date: "21.02.23", kind: "Крот"}
-    return (
-        <div>
-            <Header />
 
-            <h1 className="lineReg">Найденные животные</h1>
+        let [zap, setZap] = useState({});
+        let [cards, setCards] = useState([]);
+        let blocks = useRef();
 
-            <hr className="mt-3 mb-4" />
+        function skai(e) {
+            e.preventDefault();
+
+            const forms = document.getElementById('ishi')
+
+            if (!forms.checkValidity()) {
+                e.stopPropagation()
+                forms.classList.add('was-validated')
+                return
+            }
+
+            var myHeaders = new Headers();
+
+            var zapOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            fetch("https://pets.сделай.site/api/search/order?district=" + zap.district + " &kind=" + zap.kind, zapOptions)
+                .then(response => response.json())
+                .then(result => {
+                    if (result.data.orders.length > 0) {
+                        setCards(result.data.orders);
+                    }
+                    else {
+                        let message = 'Таких объявлений не обнаружено';
+                        blocks.current.innerText = message;
+                        blocks.current.style.background = "#C76864"
+                        blocks.current.style.color = "black";
+                        blocks.current.style.border = "1px solid #801818"
+                        blocks.current.style.display = 'flex';
+                    }
+                })
+                .catch(error => console.log('error', error));
+
+        }
+
+        return (
             <div>
-                <div className="w-50 m-auto " >
-                    <form className="d-flex but" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Введите вид животного" aria-label="Search" />
-                    </form>
-                </div>
+                <Header />
 
-                <div className="w-50 m-auto " >
-                    <form className="d-flex but" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Введите район" aria-label="Search" />
-                    </form>
-                </div>
+                <h1 className="lineReg">Найденные животные</h1>
 
-                <div className="w-50 m-auto " >
-                    <div className="d-flex justify-content-center align-items-center" >
-                        <button type="button" className="btn btn-warning">Сделать поиск</button>
+                <hr className="mt-3 mb-4"/>
+                <div style={{"minHeight":"72vh"}}>
+                <form noValidate style={{ "margin": "30px auto 0 auto", "minWidth": "300px" }} onSubmit={skai} id='ishi'>
+                    <div>
+                        <div className="w-50 m-auto " >
+                            <form className="d-flex but" role="search">
+                                <input className="form-control me-2" type="text" placeholder="Введите вид животного" aria-label="Search" onChange={(e) => setZap({ ...zap, kind: e.target.value })} />
+                            </form>
+                        </div>
+
+                        <div className="w-50 m-auto " >
+                            <form className="d-flex but" role="search">
+                                <input className="form-control me-2" type="text" placeholder="Введите район" aria-label="Search" onChange={(e) => setZap({ ...zap, district: e.target.value })}/>
+                            </form>
+                        </div>
+
+                        <div className="w-50 m-auto " >
+                            <div className="d-flex justify-content-center align-items-center" >
+                                <button type="submit" className="btn btn-warning">Сделать поиск</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <hr className="mt-5 mb-4" />
+                    </form>
+                    <hr className="mt-5 mb-4" />
+                    
 
-            <div className="row row-cols-1 row-cols-md-3 g-4 w-75 m-auto">
-                <Cards data = {card}/>
-                <Cards data = {card1}/>
-                <Cards data = {card2}/>
-                <Cards data = {card3}/>
-                <Cards data = {card4}/>
-                <Cards data = {card5}/>
-                <Cards data = {card6}/>
-                <Cards data = {card7}/>
-                <Cards data = {card8}/>
+                    <div className="row row-cols-1 row-cols-md-3 g-4 w-75 m-auto">
+                    {cards.map((item, index) => <Cardslich data={item} key={index} />)}
+                    </div>
+                    </div>
+                    <br/>
+                    
+                    <Footer />
             </div>
-<br/>
-            <Footer />
-        </div>
-    )
-}
+        )
+    }
 
-export default Vsejiv;
+    export default Vsejiv;

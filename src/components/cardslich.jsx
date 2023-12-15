@@ -65,7 +65,7 @@ const Cardslich = (props) => {
     <div>
 
       <div className="card h-100">
-        <img src={img6} className="card-img-top" alt="..." />
+        <img src={'https://pets.сделай.site'+props.data.photos} className="card-img-top wwww" alt="..." />
         <div className="card-body ft">
           <div>
             <div className="izmen">
