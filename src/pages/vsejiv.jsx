@@ -42,6 +42,7 @@ const Vsejiv = () => {
                         a.push(<li className="page-item" key={i + 'list'}><a href="#" className="page-link"
                             onClick={() => setPag(result.data.orders.slice(i, i + 10))}>{(i / 10 + 1)}</a></li>)
                         setBut(a)
+                        blocks.current.style.display = 'none';
                     }
 
                 }
@@ -89,7 +90,7 @@ const Vsejiv = () => {
                 </form>
 
                 <div className="alert alert-primary w-50 asda mt-3 " style={{ "display": "none" }} role="alert" ref={blocks}></div>
-                
+
                 <hr className="mt-5 mb-4" />
 
                 <div className="row row-cols-1 row-cols-md-3 g-4 w-75 m-auto justify-content-center">
