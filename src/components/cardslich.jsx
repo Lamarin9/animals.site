@@ -77,12 +77,12 @@ const Cardslich = (props) => {
             <p className="card-text">Описание:{props.data.description} | Чип:{props.data.mark} | Дата:{props.data.date}.</p>
           </div>
           <div className="izmen mt-3"><button type="button" onClick={() => dele(props.data.id)} className="btn btn-outline-danger">Удалить объявление</button>
-            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">Изменить данные</button>
+            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target={"#exampleModal1" + props.data.id}>Изменить данные</button>
           </div>
         </div>
       </div>
 
-      <div className="modal fade" id="exampleModal1" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div className="modal fade" id={"exampleModal1"  + props.data.id} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
