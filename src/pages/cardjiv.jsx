@@ -1,38 +1,55 @@
-import React from "react";
-import Cardjivcom from "../components/cardjivcom";
-import { useParams } from "react-router-dom";
-import Header from "../components/header";
-import { useState, useEffect } from "react";
+import { React, useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Footer from "../components/footer";
-import "../components/qqq.css";
+import Header from "../components/header";
 
 const Cardjiv = () => {
+    const location = useLocation();
+    const [card, setCard] = useState([]);
 
-    let [pets, setPets] = useState({ data: { pet: [] } });
-    useEffect(() => request_pets(pets, setPets), []);
-    let { id } = useParams();
+    const request = () => {
+        var myHeaders = new Headers();
 
-    function request_pets(pets, setPets) {
         var requestOptions = {
             method: 'GET',
+            headers: myHeaders,
             redirect: 'follow'
         };
 
-
-        fetch("https://pets.сделай.site/api/pets/" + id, requestOptions)
+        fetch(`https://pets.сделай.site/api/pets/${location.state}`, requestOptions)
             .then(response => response.json())
             .then(result => {
+                console.log(location.state);
                 console.log(result);
-                setPets(result);
+                if ('data' in result) {
+                    setCard(result.data.pet);
+                }
+
             })
             .catch(error => console.log('error', error));
     }
-    let pet = pets.data.pet;
+    useEffect(request, []);
 
     return (
         <div>
             <Header />
-                <Cardjivcom data={pet} />
+            <div style={{ "minHeight": "82vh" }}>
+            <div className="row row-cols-1 row-cols-md-3 g-4 w-75 m-auto">
+            <div className="col">
+      <div className="card h-100">
+        <img src={'https://pets.сделай.site' + card.photos1} className="card-img-top wwww" alt="..." />
+        <div className="card-body ft">
+          <div>
+          <h5 className="card-title">{card.kind}</h5>
+          <p className="card-text">id: {card.id}</p>
+          <p className="card-text">Описание:{card.description}</p>
+          <li className="list-group-item">Дата: {card.date} | Район:{card.district}</li>
+          </div>
+          </div>
+                    </div>
+                </div>
+                </div>
+            </div>
             <Footer />
         </div>
     );

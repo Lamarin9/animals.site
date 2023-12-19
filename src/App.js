@@ -6,6 +6,7 @@ import Lichkab from "./pages/lichkab";
 import Dobavjiv from "./pages/dobavjiv";
 import Vsejiv from "./pages/vsejiv";
 import Cardjiv from "./pages/cardjiv";
+import Cardjivcom from "./components/cardjivcom";
 import "./components/qqq.css";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
                 <Route path={'/dobavjiv'} element={<Dobavjiv/>}/>
                 <Route path={'/vsejiv'} element={<Vsejiv/>}/>
                 <Route path={'/cardjiv'} element={<Cardjiv/>}/>
+                <Route path={'/cardjivcom'} element={<Cardjivcom/>}/>
             </Routes>
         </div>
   );

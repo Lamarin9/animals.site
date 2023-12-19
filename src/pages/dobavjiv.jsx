@@ -52,17 +52,17 @@ const Dobavjiv = () => {
         <br />
         <div className="form-group">
           <label htmlFor="exampleFormControlFile1">Выберите файл</label>
-          <input type="file" className="form-control-file" id="exampleFormControlFile1" required name="photos1" />
+          <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/png" required name="photos1" />
         </div>
         <br />
         <div className="form-group">
           <label htmlFor="exampleFormControlFile1">Выберите файл</label>
-          <input type="file" className="form-control-file" id="exampleFormControlFile2" name="photos2" />
+          <input type="file" className="form-control-file" id="exampleFormControlFile2" accept="image/png" name="photos2" />
         </div>
         <br />
         <div className="form-group">
           <label htmlFor="exampleFormControlFile1">Выберите файл</label>
-          <input type="file" className="form-control-file" id="exampleFormControlFile3" name="photos3" />
+          <input type="file" className="form-control-file" id="exampleFormControlFile3" accept="image/png" name="photos3" />
         </div>
         <br />
         <label htmlFor="inputLast">Клеймо</label>
