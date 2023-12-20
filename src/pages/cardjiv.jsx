@@ -33,8 +33,8 @@ const Cardjiv = () => {
     return (
         <div>
             <Header />
-            <div style={{ "minHeight": "82vh" }}>
-            <div className="row row-cols-1 row-cols-md-3 g-4 w-75 m-auto">
+            <div style={{ "minHeight": "77vh" }}>
+            <div className="row row-cols-1 row-cols-md-3 g-4 w-75 d-flex justify-content-center m-auto">
             <div className="col">
       <div className="card h-100">
         <img src={'https://pets.сделай.site' + card.photos1} className="card-img-top wwww" alt="..." />
