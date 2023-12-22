@@ -33,7 +33,11 @@ const Cardjiv = () => {
     return (
         <div>
             <Header />
+<<<<<<< HEAD
             <div style={{ "minHeight": "82vh" }}>
+=======
+            <div style={{ "minHeight": "77vh" }}>
+>>>>>>> c792d2a30f4e279092e624addb5a197fddc2fa66
             <div className="row row-cols-1 row-cols-md-3 g-4 w-75 d-flex justify-content-center m-auto">
             <div className="col">
       <div className="card h-100">
