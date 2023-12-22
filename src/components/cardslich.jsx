@@ -76,7 +76,7 @@ const Cardslich = (props) => {
             <p className="card-text">Район:{props.data.district}.</p>
             <p className="card-text">Описание:{props.data.description} | Чип:{props.data.mark} | Дата:{props.data.date}.</p>
           </div>
-          <div className="izmen mt-3"><button type="button" onClick={() => dele(props.data.id)} className="btn btn-outline-danger">Удалить объявление</button>
+          <div className="izmen mt-3"><button type="button" data-bs-toggle="modal" data-bs-target={"#exampleModal6"+ props.data.id}  className="btn btn-outline-danger">Удалить объявление</button>
             <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target={"#exampleModal1" + props.data.id}>Изменить данные</button>
           </div>
         </div>
@@ -91,17 +91,14 @@ const Cardslich = (props) => {
             </div>
             <div className="modal-body">
               <form id={'redackt' + props.data.id} onSubmit={redact}>
-                <label htmlFor="inputKlic">Вид:</label>
-                <input name="kind" type="text" className="form-control" id="inputKlic" />
-                <br />
                 <label htmlFor="inputNai">Фото 1:</label>
-                <input name='photos1' type="file" className="form-control-file ddd" id="exampleFormControlFile1" />
+                <input name='photos1' type="file" className="form-control-file ddd" accept="image/png" id="exampleFormControlFile1" />
                 <br />
                 <label htmlFor="inputView">Фото 2:</label>
-                <input name='photos2' type="file" className="form-control-file ddd" id="exampleFormControlFile2" />
+                <input name='photos2' type="file" className="form-control-file ddd" accept="image/png" id="exampleFormControlFile2" />
                 <br />
                 <label htmlFor="inputVie">Фото 3:</label>
-                <input name='photos3' type="file" className="form-control-file ddd" id="exampleFormControlFile3" />
+                <input name='photos3' type="file" className="form-control-file ddd" accept="image/png" id="exampleFormControlFile3" />
                 <br />
                 <label htmlFor="inputView">Клеймо:</label>
                 <input name='mark' type="text" className="form-control" id="inputMark" />
@@ -119,6 +116,25 @@ const Cardslich = (props) => {
           </div>
         </div>
       </div>
+
+
+      <div className="modal" id={"exampleModal6"+ props.data.id} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div className="modal-dialog modal-dialog-centered">
+                                        <div className="modal-content">
+                                            <div className="modal-header">
+                                                <h5 className="modal-title" id="exampleModalLabel">Вы уверены что хотите удалить?</h5>
+                                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form >
+                                                <div className="modal-footer d-flex justify-content-around">
+                                                    <button type="button" className="btn btn-danger izmena6" data-bs-dismiss="modal" onClick={() => dele(props.data.id)}>Удалить</button>
+                                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
     </div>
 
   );

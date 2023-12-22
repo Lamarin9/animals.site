@@ -314,9 +314,10 @@ const Lichkab = () => {
                 </section>
 
                 <div className="line">Личные Объявления</div>
-
+                <div style={{ "minHeight": "27vh" }}>
                 <div className="row row-cols-1 row-cols-md-3 g-4 w-75 m-auto">
                     {cards.map((item, index) => <Cardslich data={item} key={index} />)}
+                </div>
                 </div>
                 <br />
                 <Footer />

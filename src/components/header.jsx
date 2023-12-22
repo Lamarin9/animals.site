@@ -22,7 +22,7 @@ const Header = () => {
             <Link to={'/dobavjiv'} className="nav-link">Сообщить о нахождении</Link>
           </li>
           <li className="nav-item">
-            <Link to={'/vsejiv'} className="nav-link">Все животные</Link>
+            <Link to={'/vsejiv'} className="nav-link">Поиск животных</Link>
           </li>
           <li className="nav-item">
             <Link to={'/registracia'} className="nav-link">Регистрация</Link>
@@ -35,10 +35,6 @@ const Header = () => {
           </li>
         </ul>
       </div>
-      <form className="d-flex" role="search">
-        <input className="form-control me-2" type="search" placeholder="Поиск" aria-label="Search"/>
-        <button className="btn btn-outline-success" type="submit">Найти</button>
-      </form>
     </div>
   </nav>
       </header>

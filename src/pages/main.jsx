@@ -78,10 +78,9 @@ blocks.current.style.display = 'flex';
   return<Cards data={order}/>;        
     })
   return (
-    <div>
+    <>
       <Header />
       <div className="line">Нашлись хозяева!</div>
-
 
 <Sliders/>
 
@@ -94,7 +93,7 @@ blocks.current.style.display = 'flex';
       <form className="w-50 m-auto p-3" style={{ "minWidth": "300px" }} noValidate onSubmit={sign} id='email'>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">Укажите вашу почту для связи с вами</label>
-          <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required onChange={(e) => setEmail({email: e.target.value})}/>
+          <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required onChange={(e) => setEmail({email: e.target.value})}/>
           <div id="emailHelp" className="form-text">Ваши данные полностью конфиденциальны.</div>
         </div>
         <button type="submit" className="btn btn-primary">Отправить почту нам</button>
@@ -102,7 +101,7 @@ blocks.current.style.display = 'flex';
       <div className="alert alert-primary w-50 asda mt-3 " style={{"display":"none"}} role="alert" ref={blocks}></div>
       
       <Footer />
-    </div>
+    </>
   )
 }
 

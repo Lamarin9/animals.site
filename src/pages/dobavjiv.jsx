@@ -10,6 +10,13 @@ const Dobavjiv = () => {
   function dobav(e) {
     e.preventDefault();
 
+    const forms = document.getElementById('dobav')
+
+    if (!forms.checkValidity()) {
+        e.stopPropagation()
+        forms.classList.add('was-validated')
+        return}
+
     var formdata = new FormData(document.getElementById("dobav"));
 
     var requestOptions = {
@@ -42,28 +49,24 @@ const Dobavjiv = () => {
 
       <form className="contei" id="dobav" noValidate onSubmit={dobav}>
         <label htmlFor="inputA">Ваше имя</label>
-        <input type="text" className="form-control" id="inputA" required name="name" />
+        <input type="text" className="form-control" pattern='^[А-Яа-яёЁ\s\-]+$' id="inputA" required name="name" />
         <br />
         <label htmlFor="inputK">Введите номер телефона</label>
         <input type="text" className="form-control" pattern='^[\d\+]{12}$' id="inputK" required name="phone" />
         <br />
         <label htmlFor="inputEmail1">Введите вашу почту</label>
         <input type="email" className="form-control" id="inputEmail1" placeholder="Почта" required name="email" />
-        <br />
-        <div className="form-group">
           <label htmlFor="exampleFormControlFile1">Выберите файл</label>
           <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/png" required name="photos1" />
-        </div>
-        <br />
-        <div className="form-group">
+          <br />
+          <br />
           <label htmlFor="exampleFormControlFile1">Выберите файл</label>
           <input type="file" className="form-control-file" id="exampleFormControlFile2" accept="image/png" name="photos2" />
-        </div>
-        <br />
-        <div className="form-group">
+          <br />
+          <br />
           <label htmlFor="exampleFormControlFile1">Выберите файл</label>
           <input type="file" className="form-control-file" id="exampleFormControlFile3" accept="image/png" name="photos3" />
-        </div>
+        <br />
         <br />
         <label htmlFor="inputLast">Клеймо</label>
         <input type="text" className="form-control" id="inputKlich" name="mark" />
